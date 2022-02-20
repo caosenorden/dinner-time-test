@@ -1,0 +1,7 @@
+<% if @recipes.empty? %>
+  <p class="no-results"> No results </p>
+<% else %>
+  <p><%= @total_found %> recipes found </p>
+  <%= render @recipes%>
+  <%= paginate @recipes, remote: true %>
+<% end %>

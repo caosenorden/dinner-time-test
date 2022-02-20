@@ -1,0 +1,14 @@
+<ul style="border: 1px solid" id="recipe_<%= recipe_counter %>">
+  <% recipe.attributes.except!(*["id", "timestamps", "cuisine", "image", "author", "category"]).each do |attr_name, attr_value| %>
+    <% if attr_value.is_a?(Array) %>
+      <li><span class="attr-name"><%= attr_name.titleize %></span></li>
+      <ul>
+        <% attr_value.each do |value| %>
+          <li><%= value %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <li><span class="attr-name"><%= attr_name.titleize %>:</span> <%= attr_value %></li>
+    <% end %>
+  <% end %>
+</ul>

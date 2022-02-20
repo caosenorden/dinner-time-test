@@ -1,0 +1,28 @@
+<div class="main-container">
+  <h1>
+    It's dinner time !
+  </h1>
+
+  <h2>
+    Please, add the ingredients you have at home and then click on "search", we'll look for some relevant recipes.
+  </h2>
+
+  <%= form_with url: "/recipes/search", local: false do |form| %>
+    <div class="fields">
+      <div>
+        <%= form.text_field :ingredients_input %>
+        <a href="#" class="add-ingredient">+</a>
+      </div>
+      <span class="help">Press enter to include the ingredients</span>
+      <span class="error hidden"></span>
+      <div class="ingredients-list hidden">
+        <span>Ingredients:</span>
+      </div>
+    </div>
+    <div class="form-submit">
+      <%= form.submit "Search"%>
+    </div>
+  <% end %>
+  <div id="recipes">
+  </div>
+</div>

@@ -1,0 +1,4 @@
+document.querySelector(".error")?.classList.add("hidden");
+var recipes = document.querySelector("#recipes");
+recipes.innerHTML = "";
+recipes.insertAdjacentHTML("beforeend", "<%= j render partial: 'recipes', locals: {recipes: @recipes} %>");
