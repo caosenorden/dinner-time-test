@@ -12,6 +12,13 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+function addIngredient(value){
+  const html = "<input type='checkbox' checked='checked' name='ingredients[]' id='ingredient-"+value+"' value='"+value+"'><label for='ingredient-"+value+"'><span>"+value+"</span></label"
+  document.querySelector(".ingredients-list").insertAdjacentHTML("beforeend", html);
+  document.querySelector(".ingredients-list").classList.remove("hidden");
+  document.querySelector("#ingredients_input").value = "";
+};
+
 window.onload = function(e){
   document.body.addEventListener("ajax:error", (event) => {
     const [data, status, xhr] = event.detail;
@@ -29,10 +36,7 @@ window.onload = function(e){
   document.querySelector("#ingredients_input").focus();
   document.querySelector("#ingredients_input").addEventListener("keyup", (event) => {
     if(event.keyCode === 13){
-      const html = "<input type='checkbox' checked='checked' name='ingredients[]' id='ingredient-"+event.target.value+"' value='"+event.target.value+"'><label for='ingredient-"+event.target.value+"'><span>"+event.target.value+"</span></label"
-      document.querySelector(".ingredients-list").insertAdjacentHTML("beforeend", html);
-      document.querySelector(".ingredients-list").classList.remove("hidden");
-      event.target.value = "";
+      addIngredient(event.target.value);
     };
   });
 
@@ -40,7 +44,7 @@ window.onload = function(e){
     event.preventDefault();
     event.stopPropagation();
 
-
+    addIngredient(document.querySelector("#ingredients_input").value);
   });
 };
 
